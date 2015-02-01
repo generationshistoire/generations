@@ -1,0 +1,272 @@
+\documentclass[12pt,french]{book}
+
+%\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{fontspec}
+\setmainfont{Adobe Garamond Pro}
+\defaultfontfeatures{Numbers=OldStyle,Ligatures=Rare,Mapping=tex-text}
+
+%%%%% Ce qui suit permet d'avoir le nom des parties en en-tête avec 
+%\usepackage{etoolbox}
+%\makeatletter
+%% patch \@part[#1]{#2} and \@spart (see the class file) to save the part name
+%\pretocmd{\@part}{\gdef\parttitle{#1}}{}{}
+%\pretocmd{\@spart}{\gdef\parttitle{#1}}{}{}
+%\makeatother
+
+\usepackage{slantsc}
+
+\usepackage[a4paper]{geometry}
+
+\usepackage[pagestyles]{titlesec}
+
+\usepackage{quotchap}
+
+\usepackage{babel}
+\frenchbsetup{og=«,fg=»}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue}
+
+
+% Suppression de l'affichage des numéros de sectionnement en dessous des chapitres :
+\setcounter{secnumdepth}{0}
+
+% Notes temporaires invisibles
+\newcommand{\tempnote}[1]{}
+% Notes temporaires visibles
+%\newcommand{\tempnote}[1]{\marginpar{\tiny\fontspec[Ligatures=Rare,Variant=8]{Zapfino}\selectfont #1}}
+
+% \fsc comme avec efrench
+\makeatletter
+%
+\def\@fscespace[#1 #2]{%
+ \textsc{%
+  \MakeUppercase{\@car#1\@nil}%
+  \MakeLowercase{\@cdr#1\@nil}}%
+ \if\relax\detokenize{#2}\relax
+ \else%
+   \space\@fscespace[#2]%
+ \fi}
+%
+\newcommand\fsc[1]{\@fsctiret[#1-]}
+\def\@fsctiret[#1-#2]{%
+ \@fscespace[#1 ]%
+ \if\relax\detokenize{#2}\relax
+ \else%
+   --\@fsctiret[#2]%
+ \fi}
+%
+\makeatother
+
+%\newcommand*{\bsc}[1]{\leavevmode\hbox{\scshape #1}} % De Babel : noms de famille en petite majuscules et insécables
+
+\newcommand*{\crm}[1]{%
+%\MakeUppercase
+\textsc{\romannumeral #1}}  % Chiffres romains % pas majuscules pour les siècles d'après l'Imprimerie Nationale
+
+\newcommand*{\siecle}[1]{%
+\crm{#1}%
+\ifnum#1=1%
+  \ifdefined\ier%
+    \ier%
+  \else%
+    \textsuperscript{\lowercase{er}}%
+  \fi%
+\else%
+  \ifdefined\ieme%
+    \ieme%
+  \else%
+    \textsuperscript{\lowercase{e}}%
+  \fi%
+\fi%
+\ siècle}
+
+\newcommand*{\siecles}[2]{%
+\crm{#1} -- \crm{#2}%
+\ifdefined\iemes%
+  \iemes%
+\else%
+  \textsuperscript{\lowercase{es}}%
+\fi%
+\ siècles%
+}
+
+%\renewcommand{\theenumii}{\alph{enumii}}
+\renewcommand{\labelenumii}{\theenumii.}
+
+\title{Générations et Histoire}
+\author{Hervé \fsc{Tigréat}}
+
+
+\begin{document}
+
+\pagestyle{empty}
+
+\setmainfont{Adobe Garamond Pro}
+
+%%%%%% définition du style "livre", merci etoolbox pour \parttitle
+%\newpagestyle{livre}{\sethead[\thepage][][\MakeUppercase\parttitle]{\MakeUppercase\chaptertitle}{}{\thepage}}
+\newpagestyle{livre}{\sethead[\thepage][][\MakeUppercase\chaptertitle]{\MakeUppercase\sectiontitle}{}{\thepage}}
+
+\maketitle
+
+
+\frontmatter
+
+%%%%% début d'utilisation du style "livre"
+\pagestyle{livre}
+
+\begin{savequote}%[45mm]
+Ceux qui ont tout oublié n'ont pas d'avenir
+\qauthor{Régis~\fsc{Debray}, France Culture le 4.1.2013 à 8 h 35}
+\end{savequote}
+
+\chapter{Accueil}
+\input{frontmatter/accueil}
+
+\chapter{Prologue}
+\input{frontmatter/prologue}
+
+
+\mainmatter
+
+%\part{L'Antiquité}
+\thispagestyle{empty}
+
+\chapter[Cités antiques inégalitaires et patriarcales]{Cités antiques\\inégalitaires et patriarcales}
+\input{chapitres/Cites_antiques}
+
+\chapter{Cités esclavagistes}
+\input{chapitres/Cites_esclavagistes}
+
+\chapter{Les représentations antiques}
+\input{chapitres/Les_representations_antiques}
+
+\chapter{L'exception juive}
+\input{chapitres/L_exception_juive}
+
+\chapter{Mœurs juives}
+\input{chapitres/Moeurs_juives}
+
+\chapter{Les juifs, le travail et les esclaves}
+\input{chapitres/Juifs_travail_esclaves}
+
+\chapter{Les lois d'Auguste}
+\input{chapitres/Les_lois_d_auguste}
+
+\chapter[Évolution des droits personnels sous l'Empire]{Évolution des droits personnels\\sous l'Empire}
+\input{chapitres/Evolution_droits_personnels_empire}
+
+\chapter{La génération chez les chrétiens}
+\input{chapitres/Generation_chez_chretiens}
+
+\chapter{Une contre-société chrétienne}
+\input{chapitres/Une_contre-societe_chretienne}
+
+\chapter{Constantin et le christianisme}
+\input{chapitres/Constantin_christianisme}
+
+\chapter{Constantin et le droit des personnes}
+\input{chapitres/Constantin_droit_personnes}
+
+\chapter{Entrée en scène des Barbares}
+\input{chapitres/Entree_scene_barbares}
+
+\chapter{Bas-Empire et Haut-Moyen-Âge}
+\input{chapitres/Bas-empire_haut-moyen-age}
+
+\chapter[L'esclavage du Bas-Empire et du Haut-Moyen-Âge]{L'esclavage\\du Bas-Empire et du Haut-Moyen-Âge}
+\input{chapitres/Esclavage_bas-empire_haut-moyen-age}
+
+\chapter{Le clergé chrétien}
+\input{chapitres/Clerge_chretien}
+
+\chapter{Les religieux}
+\input{chapitres/Les_religieux}
+
+\chapter{Le mariage constantinien}
+\input{chapitres/Mariage_constantinien}
+
+\chapter{Familles de chair}
+\input{chapitres/Familes_de_chair}
+
+\chapter{Familles spirituelles}
+\input{chapitres/Familes_spirituelles}
+
+\chapter[Les familles de l'Ancien Régime entre autorités civiles et religieuses]{Les familles de l'Ancien Régime\\entre autorités civiles et religieuses}
+\input{chapitres/Familles_ancien_regime}
+
+\chapter{Les devoirs des pères de l'Ancien Régime}
+\input{chapitres/Devoirs_peres_ancien_regime}
+
+\chapter{La police des familles}
+\input{chapitres/Police_des_familles}
+
+\chapter[Les lumières contre les familles traditionnelles]{Les lumières\\contre les familles traditionnelles}
+\input{chapitres/Lumieres_contre_familles_traditionnelles}
+
+\chapter{La Révolution française}
+\input{chapitres/Revolution_francaise}
+
+\chapter{Les familles du Code Napoléon}
+\input{chapitres/Famille_code_napoleon}
+
+\chapter{La police des familles du }%\siecle{19}}
+\input{chapitres/Police_familles_XIX_siecle}
+
+\chapter{Législation républicaine (1880--1946)}
+\input{chapitres/Legislation_republicaine}
+
+\chapter{Séparation des églises et de l'État}
+\input{chapitres/Separation_eglises_etat}
+
+\chapter{Contestation du Code Napoléon}
+\input{chapitres/Contestation_code_napoleon}
+
+\chapter{L'État, providence des familles ?}
+\input{chapitres/Etat_providence_familles}
+
+\chapter[Démantèlement depuis 1965 de la famille traditionnelle]{Démantèlement depuis 1965\\de la famille traditionnelle}
+\input{chapitres/Demantelement_depuis_1965}
+
+\chapter[Victoire de la liberté individuelle et du mariage d'amour]{Victoire de la liberté individuelle\\et du mariage d'amour}
+\input{chapitres/Victoire_liberte_individuelle}
+
+\chapter{Le corps des femmes est à elles}
+\input{chapitres/Corps_femmes_a_elles}
+
+\chapter{Incestes et paradoxes}
+\input{chapitres/Incestes_paradoxes}
+
+\chapter{Perplexités éducatives}
+\input{chapitres/Perplexites_educatives}
+
+\chapter{Désarrois masculins}
+\input{chapitres/Desarois_masculins}
+
+\chapter{Inertie des pratiques}
+\input{chapitres/Inertie_des_pratiques}
+
+\chapter{Un enfant pour quoi ? Pour qui ?}
+\input{chapitres/Enfant_pour_quoi_pour_qui}
+
+\chapter{Qui pour accueillir l'enfant ?}
+\input{chapitres/Qui_pour_accueillir_enfant}
+
+\chapter{Droit à l'enfant ?}
+\input{chapitres/Droit_a_enfant}
+
+\chapter{Progrès ou régressions ?}
+\input{chapitres/Progres_regressions}
+
+\chapter{Conclusion}
+\input{chapitres/Conclusion}
+
+
+\backmatter
+
+\tableofcontents
+
+\end{document}
