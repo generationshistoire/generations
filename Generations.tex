@@ -62,9 +62,18 @@
 
 %\newcommand*{\bsc}[1]{\leavevmode\hbox{\scshape #1}} % De Babel : noms de famille en petite majuscules et insécables
 
+% D'après l'Imprimerie Nationale, les siècles s'écrivent avec des chiffres romains
+% en petites capitales... Comme il n'y a pas de petites capitales italiques, on essaie
+% d'utiliser dans ce cas des petites capitales penchées : c'est pas très différent
+\makeatletter
+\newcommand*{\my@test@it}{it}
 \newcommand*{\crm}[1]{%
-%\MakeUppercase
-\textsc{\romannumeral #1}}  % Chiffres romains % pas majuscules pour les siècles d'après l'Imprimerie Nationale
+\ifx\f@shape\my@test@it%
+  \textsc{\textsl{\romannumeral #1}}\relax
+\else%
+  \textsc{\romannumeral #1}\relax
+\fi}
+\makeatother
 
 \newcommand*{\siecle}[1]{%
 \crm{#1}%
@@ -84,7 +93,7 @@
 \ siècle}
 
 \newcommand*{\siecles}[2]{%
-\crm{#1} -- \crm{#2}%
+\crm{#1}--\crm{#2}%
 \ifdefined\iemes%
   \iemes%
 \else%
