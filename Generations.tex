@@ -77,7 +77,7 @@
 \fi}
 \makeatother
 
-\newcommand*{\siecle}[1]{%
+\newcommand*{\crmieme}[1]{%
 \crm{#1}%
 \ifnum#1=1%
   \ifdefined\ier%
@@ -92,7 +92,11 @@
     \textsuperscript{\lowercase{e}}%
   \fi%
 \fi%
-\ siècle}
+}
+
+\newcommand*{\siecle}[1]{%
+\crmieme{#1}\ siècle%
+}
 
 \newcommand*{\siecles}[2]{%
 \crm{#1}--\crm{#2}%
