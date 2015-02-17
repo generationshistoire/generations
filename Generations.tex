@@ -71,8 +71,10 @@
 \newcommand*{\my@test@it}{it}
 \newcommand*{\crm}[1]{%
 \ifx\f@shape\my@test@it%
+  %[italique détecté]
   \textsc{\textsl{\romannumeral #1}}\relax
 \else%
+  %[italique non-détecté]
   \textsc{\romannumeral #1}\relax
 \fi}
 \makeatother
