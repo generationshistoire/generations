@@ -7,19 +7,21 @@
 \setmainfont{Adobe Garamond Pro}
 \defaultfontfeatures{Numbers=OldStyle,Ligatures=Rare,Mapping=tex-text}
 
-%%%%% Ce qui suit permet d'avoir le nom des parties en en-tête avec 
-%\usepackage{etoolbox}
-%\makeatletter
-%% patch \@part[#1]{#2} and \@spart (see the class file) to save the part name
-%\pretocmd{\@part}{\gdef\parttitle{#1}}{}{}
-%\pretocmd{\@spart}{\gdef\parttitle{#1}}{}{}
-%\makeatother
+%%%%%% Ce qui suit permet d'avoir le nom des parties en en-tête avec 
+\usepackage{etoolbox}
+\makeatletter
+%%% patch \@part[#1]{#2} and \@spart (see the class file) to save the part name
+\pretocmd{\@part}{\gdef\parttitle{#1}}{}{}
+\pretocmd{\@spart}{\gdef\parttitle{#1}}{}{}
+\makeatother
+
+\usepackage[a4paper]{geometry}
+
+\usepackage{array}
 
 \usepackage{slantsc}
 
 \usepackage{enumitem}
-
-\usepackage[a4paper]{geometry}
 
 \usepackage[pagestyles]{titlesec}
 
@@ -130,7 +132,8 @@
 
 %%%%%% définition du style "livre", merci etoolbox pour \parttitle
 %\newpagestyle{livre}{\sethead[\thepage][][\MakeUppercase\parttitle]{\MakeUppercase\chaptertitle}{}{\thepage}}
-\newpagestyle{livre}{\sethead[\thepage][][\scshape\chaptertitle]{\scshape\sectiontitle}{}{\thepage}}
+\newpagestyle{livre}{\sethead[\thepage][][\scshape\parttitle]{\scshape\chaptertitle}{}{\thepage}}
+%\newpagestyle{livre}{\sethead[\thepage][][\scshape\chaptertitle]{\scshape\sectiontitle}{}{\thepage}}
 
 \maketitle
 
@@ -154,38 +157,10 @@
 
 \mainmatter
 
-%\part{L'Antiquité}
+\part{Nos Antiquités}
 \thispagestyle{empty}
 
-\chapter[Cités antiques inégalitaires et patriarcales]{Cités antiques\\inégalitaires et patriarcales}
-\input{chapitres/Cites_antiques}
-
-\chapter{Cités esclavagistes}
-\input{chapitres/Cites_esclavagistes}
-
-\chapter{Les représentations antiques}
-\input{chapitres/Les_representations_antiques}
-
-\chapter{L'exception juive}
-\input{chapitres/L_exception_juive}
-
-\chapter{Mœurs juives}
-\input{chapitres/Moeurs_juives}
-
-\chapter{Les juifs, le travail et les esclaves}
-\input{chapitres/Juifs_travail_esclaves}
-
-\chapter{Les lois d'Auguste}
-\input{chapitres/Les_lois_d_auguste}
-
-\chapter[Évolution des droits personnels sous l'Empire]{Évolution des droits personnels\\sous l'Empire}
-\input{chapitres/Evolution_droits_personnels_empire}
-
-\chapter{La génération chez les chrétiens}
-\input{chapitres/Generation_chez_chretiens}
-
-\chapter{Une contre-société chrétienne}
-\input{chapitres/Une_contre-societe_chretienne}
+\input{chapitres/nos_antiquites}
 
 \chapter{Constantin et le christianisme}
 \input{chapitres/Constantin_christianisme}
