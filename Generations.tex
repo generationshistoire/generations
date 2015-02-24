@@ -36,6 +36,13 @@
 \hypersetup{colorlinks=true, linkcolor=blue,urlcolor=blue}
 
 
+\makeatletter
+%%% Numéroter les chapitres par partie
+\@addtoreset{chapter}{part}
+%%% Vider le style des pages de parties et de chapitres
+\let\ps@plain=\ps@empty
+\makeatother
+
 % Suppression de l'affichage des numéros de sectionnement en dessous des chapitres :
 \setcounter{secnumdepth}{0}
 
@@ -115,11 +122,6 @@
 }
 
 \newcommand\temppagebreak{\pagebreak}
-
-
-\makeatletter
-\@addtoreset{chapter}{part}
-\makeatother
 
 
 %\renewcommand{\theenumii}{\alph{enumii}}
