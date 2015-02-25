@@ -33,7 +33,7 @@
 \frenchbsetup{og=«,fg=»}
 
 \usepackage{hyperref}
-\hypersetup{colorlinks=true, linkcolor=blue,urlcolor=blue}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
 
 
 \makeatletter
@@ -51,11 +51,12 @@
 %% Notes temporaires visibles
 \newcommand{\tempnote}[1]{\marginpar{\tiny\fontspec[Ligatures=Rare,Variant=8]{Zapfino}\selectfont #1}}
 
-% \fsc comme avec efrench
+%%% \fsc comme avec efrench
+%%% \bsc vient de babel-french
 \makeatletter
 %
 \def\@fscespace[#1 #2]{%
- \textsc{%
+ \bsc{%
   \MakeUppercase{\@car#1\@nil}%
   \MakeLowercase{\@cdr#1\@nil}}%
  \if\relax\detokenize{#2}\relax
@@ -133,22 +134,17 @@
 
 \begin{document}
 
-\pagestyle{empty}
-
 \setmainfont{Adobe Garamond Pro}
 
 %%%%%% définition du style "livre", merci etoolbox pour \parttitle
-%\newpagestyle{livre}{\sethead[\thepage][][\MakeUppercase\parttitle]{\MakeUppercase\chaptertitle}{}{\thepage}}
 \newpagestyle{livre}{\sethead[\thepage][][\scshape\parttitle]{\scshape\chaptertitle}{}{\thepage}}
 %\newpagestyle{livre}{\sethead[\thepage][][\scshape\chaptertitle]{\scshape\sectiontitle}{}{\thepage}}
+\pagestyle{livre}
 
 \maketitle
 
 
 \frontmatter
-
-%%%%% début d'utilisation du style "livre"
-\pagestyle{livre}
 
 %\begin{savequote}%[45mm]
 %Ceux qui ont tout oublié n'ont pas d'avenir
@@ -164,7 +160,6 @@
 
 \mainmatter
 
-\thispagestyle{empty}
 \input{chapitres/nos_antiquites}
 
 \input{chapitres/de_constantin_aux_lumieres}
