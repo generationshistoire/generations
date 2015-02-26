@@ -19,6 +19,8 @@
 
 \usepackage{array}
 
+\usepackage[normalem]{ulem}
+
 \usepackage{slantsc}
 
 \usepackage{enumitem}
@@ -46,35 +48,53 @@
 % Suppression de l'affichage des numéros de sectionnement en dessous des chapitres :
 \setcounter{secnumdepth}{0}
 
-%% Notes temporaires invisibles
+
+%%% Notes temporaires invisibles
 %\newcommand{\tempnote}[1]{}
-%% Notes temporaires visibles
+%%% Notes temporaires visibles
 \newcommand{\tempnote}[1]{\marginpar{\tiny\fontspec[Ligatures=Rare,Variant=8]{Zapfino}\selectfont #1}}
 
-%%% \fsc comme avec efrench
-%%% \bsc vient de babel-french
+%%% Activer le soulignement ondulé rouge
+\makeatletter\newcommand\tempuwave{\bgroup\markoverwith{\textcolor{red}{\lower3.5\p@\hbox{\sixly \char58}}}\ULon}\makeatother
+%%% Désactiver le soulignement ondulé rouge
+%\newcommand\tempuwave{}
+
+%%% Activer le passage à la page suivante (temporaire)
+\newcommand\temppagebreak{\pagebreak}
+%%% Désactiver le passage à la page suivante (temporaire)
+%\newcommand\temppagebreak{}
+
+
+%%% \fsc comme avec efrench : interdit la coupure des noms, même aux espaces, mais ici l'autorise aux tirets
+%%% \bsc vient de babel-french (petites majuscules, et insécables : dans une boîte)... sinon :
+% \newcommand*{\bsc}[1]{\leavevmode\hbox{\scshape #1}}
 \makeatletter
 %
-\def\@fscespace[#1 #2]{%
- \bsc{%
-  \MakeUppercase{\@car#1\@nil}%
-  \MakeLowercase{\@cdr#1\@nil}}%
- \if\relax\detokenize{#2}\relax
+\def\@fscespace[#1 #2]%
+{%
+ \MakeUppercase{\@car#1\@nil}%
+ \MakeLowercase{\@cdr#1\@nil}%
+ \if\relax\detokenize{#2}\relax%
  \else%
-   \space\@fscespace[#2]%
- \fi}
+  ~\@fscespace[#2]%
+ \fi%
+}
 %
 \newcommand\fsc[1]{\@fsctiret[#1-]}
-\def\@fsctiret[#1-#2]{%
- \@fscespace[#1 ]%
- \if\relax\detokenize{#2}\relax
- \else%
+\def\@fsctiret[#1-#2]%
+{%
+ \bsc%
+ {%
+  \@fscespace[#1 ]%
+  \if\relax\detokenize{#2}\relax%
+  \else%
    --\@fsctiret[#2]%
- \fi}
+  \fi%
+ }%
+}
 %
 \makeatother
 
-%\newcommand*{\bsc}[1]{\leavevmode\hbox{\scshape #1}} % De Babel : noms de famille en petite majuscules et insécables
 
 % D'après l'Imprimerie Nationale, les siècles s'écrivent avec des chiffres romains
 % en petites capitales... Comme il n'y a pas de petites capitales italiques, on essaie
@@ -121,8 +141,6 @@
 \fi%
 \ siècles%
 }
-
-\newcommand\temppagebreak{\pagebreak}
 
 
 %\renewcommand{\theenumii}{\alph{enumii}}
