@@ -3,10 +3,8 @@
 %
 \def\@fscespace[#1 #2]%
 {%
- {%
-  \MakeUppercase{\@car#1\@nil}%
-  \MakeLowercase{\@cdr#1\@nil}%
- }%
+ \MakeUppercase{\@car#1\@nil}%
+ \MakeLowercase{\@cdr#1\@nil}%
  \if\relax\detokenize{#2}\relax%
  \else%
   ~\@fscespace[#2]%
@@ -21,7 +19,7 @@
   \@fscespace[#1 ]%
   \if\relax\detokenize{#2}\relax%
   \else%
-  --\@fsctiret[#2]%
+   --\@fsctiret[#2]%
   \fi%
  }%
 }
