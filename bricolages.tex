@@ -1,0 +1,29 @@
+% \fsc comme avec efrench
+\makeatletter
+%
+\def\@fscespace[#1 #2]%
+{%
+ {%
+  \MakeUppercase{\@car#1\@nil}%
+  \MakeLowercase{\@cdr#1\@nil}%
+ }%
+ \if\relax\detokenize{#2}\relax%
+ \else%
+  ~\@fscespace[#2]%
+ \fi%
+}
+%
+\newcommand\fsc[1]{\@fsctiret[#1-]}
+\def\@fsctiret[#1-#2]%
+{%
+ \bsc%
+ {%
+  \@fscespace[#1 ]%
+  \if\relax\detokenize{#2}\relax%
+  \else%
+  --\@fsctiret[#2]%
+  \fi%
+ }%
+}
+%
+\makeatother
