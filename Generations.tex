@@ -1,16 +1,12 @@
 \documentclass[12pt,french,oneside]{book}
 %\documentclass[12pt,french]{book}
 
-\usepackage[a4paper]{geometry}
-
 %\usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
-
 
 \usepackage{fontspec}
 \setmainfont{Adobe Garamond Pro}
 \defaultfontfeatures{Numbers=OldStyle,Ligatures=Rare,Mapping=tex-text}
-
 
 %%%%%% Ce qui suit permet d'avoir le nom des parties en en-tête avec 
 \usepackage{etoolbox}
@@ -20,38 +16,9 @@
 \pretocmd{\@spart}{\gdef\parttitle{#1}}{}{}
 \makeatother
 
-\makeatletter
-%%% Numéroter les chapitres par partie %%% remplacé par package chngcntr ci-dessous
-%\@addtoreset{chapter}{part}
-%%% Vider le style des pages de parties et de chapitres
-\let\ps@plain=\ps@empty
-\makeatother
-
-
-\usepackage{chngcntr}
-\counterwithin*{chapter}{part}
-%%% Le package hyperref a besoin de différencier les chapitres (dont le compteur est réinitialisé aux parties)
-\newcommand{\theHchapter}{\thepart\arabic{chapter}}
-%%% Pour l'instant, ma commande vrefnum (ci-dessous) ne fonctionne qu'avec des captions
-%%% numérotées en format simple, donc un compteur de table indépendant pour tout le document
-\counterwithout{table}{chapter}
-
+\usepackage[a4paper]{geometry}
 
 \usepackage{varioref}
-%%%%%% Ce qui suit ajoute la commande vrefnum au package varioref
-\makeatletter
-\def\vref@num#1#2{%
-  \expandafter\expandafter\expandafter\vref@@num
-  \csname r@#2\endcsname{}{}\@nil#1%
-}
-\def\vref@@num#1#2#3\@nil#4{%
-  \def#4{#1}%
-}
-\def\vrefnum#1#2{%
-  \vref@num{#1}{#2}%
-}
-\makeatother
-
 
 \usepackage{array}
 
@@ -74,6 +41,12 @@
 \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
 
 
+\makeatletter
+%%% Numéroter les chapitres par partie
+\@addtoreset{chapter}{part}
+%%% Vider le style des pages de parties et de chapitres
+\let\ps@plain=\ps@empty
+\makeatother
 
 % Suppression de l'affichage des numéros de sectionnement en dessous des chapitres :
 \setcounter{secnumdepth}{0}
@@ -82,10 +55,7 @@
 %%% Notes temporaires invisibles
 %\newcommand{\tempnote}[1]{}
 %%% Notes temporaires visibles
-\makeatletter
-\newcommand{\tempnote}[1]%
-{\marginpar{\ifodd\c@page\raggedright\else\raggedleft\fi\tiny\fontspec[Ligatures=Rare,Variant=8]{Zapfino}\selectfont #1}}
-\makeatother
+\newcommand{\tempnote}[1]{\marginpar{\tiny\fontspec[Ligatures=Rare,Variant=8]{Zapfino}\selectfont #1}}
 
 %%% Activer le soulignement ondulé rouge
 \makeatletter\newcommand\tempuwave{\bgroup\markoverwith{\textcolor{red}{\lower3.5\p@\hbox{\sixly \char58}}}\ULon}\makeatother
@@ -176,31 +146,6 @@
 }
 
 
-\newcommand\vrefbetterrange[2]%
-{%
- \vrefnum\numrefun{#1}%
- \vrefnum\numrefdeux{#2}%
- \vrefpagenum\pagerefun{#1}%
- \vrefpagenum\pagerefdeux{#2}%
-%\vref{#1} et \vref{#2}
- \ifnumcomp{\numrefun + 1}{=}{\numrefdeux}%
- {%
-  \ifnumcomp{\pagerefun}{=}{\pagerefdeux}%
-  {\ref{#1} et \ref{#2} \vpageref[sur cette page]{#2}}%
-  {\ref{#1} \vpageref[sur cette page,]{#1} et \ref{#2} \vpageref[sur cette page]{#2}}%
- }%
- {%
-  \ifnumcomp{\pagerefun}{=}{\pagerefdeux}%
-  {\ref{#1} à \ref{#2} \vpageref[sur cette page]{#2}}%
-  {\ref{#1} \vpageref[sur cette page,]{#1} à \ref{#2} \vpageref[sur cette page]{#2}}%
- }%
-}
-
-
-%%%%%% Créer commande \anglais{texte en anglais à mettre en emphase et règles de césure anglaises...}
-%%%%%% Cf. en particulier Police_des_familles dans la marge de la troisième page
-
-
 %\renewcommand{\theenumii}{\alph{enumii}}
 \renewcommand{\labelenumii}{\theenumii.}
 
@@ -227,8 +172,10 @@
 %\qauthor{Régis~\fsc{Debray}, France Culture le 4.1.2013 à 8 h 35}
 %\end{savequote}
 
+\chapter{Accueil}
 \input{frontmatter/accueil}
 
+\chapter{Prologue}
 \input{frontmatter/prologue}
 
 
@@ -245,9 +192,9 @@
 
 \backmatter
 
+\chapter{Conclusion}
 \input{chapitres/Conclusion}
 
 \tableofcontents
-\listoftables
 
 \end{document}
