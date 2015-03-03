@@ -78,6 +78,9 @@
 % Suppression de l'affichage des numéros de sectionnement en dessous des chapitres :
 \setcounter{secnumdepth}{0}
 
+%%% Un peu d'air autour des captions...
+\addtolength{\abovecaptionskip}{5pt}
+\addtolength{\belowcaptionskip}{10pt}
 
 %%% Notes temporaires invisibles
 %\newcommand{\tempnote}[1]{}
@@ -132,16 +135,19 @@
 % D'après l'Imprimerie Nationale, les siècles s'écrivent avec des chiffres romains
 % en petites capitales... Comme il n'y a pas de petites capitales italiques, on essaie
 % d'utiliser dans ce cas des petites capitales penchées : c'est pas très différent
+% Malheuresement, ça ne marche qu'avec la police Computer Modern (en tous cas pas avec Garamond)
 \makeatletter
 \newcommand*{\my@test@it}{it}
-\newcommand*{\crm}[1]{%
+\newcommand*{\crm}[1]%
+{%
 \ifx\f@shape\my@test@it%
-  %[italique détecté]
+ %[italique détecté]
   \textsc{\textsl{\romannumeral #1}}\relax
 \else%
-  %[italique non-détecté]
+ %[italique non-détecté]
   \textsc{\romannumeral #1}\relax
-\fi}
+\fi%
+}
 \makeatother
 
 \newcommand*{\crmieme}[1]{%
@@ -186,13 +192,13 @@
  \ifnumcomp{\numrefun + 1}{=}{\numrefdeux}%
  {%
   \ifnumcomp{\pagerefun}{=}{\pagerefdeux}%
-  {\ref{#1} et \ref{#2} \vpageref[sur cette page]{#2}}%
-  {\ref{#1} \vpageref[sur cette page,]{#1} et \ref{#2} \vpageref[sur cette page]{#2}}%
+  {\ref{#1} et \ref{#2} \vpageref*[]{#2}}%
+  {\ref{#1} \vpageref[ci-dessus]{#1} et \ref{#2} \vpageref[ci-dessus]{#2}}%
  }%
  {%
   \ifnumcomp{\pagerefun}{=}{\pagerefdeux}%
-  {\ref{#1} à \ref{#2} \vpageref[sur cette page]{#2}}%
-  {\ref{#1} \vpageref[sur cette page,]{#1} à \ref{#2} \vpageref[sur cette page]{#2}}%
+  {\ref{#1} à \ref{#2} \vpageref*[]{#2}}%
+  {\ref{#1} \vpageref[ci-dessus]{#1} à \ref{#2} \vpageref[ci-dessus]{#2}}%
  }%
 }
 
