@@ -25,3 +25,23 @@
 }
 %
 \makeatother
+
+
+% D'après l'Imprimerie Nationale, les siècles s'écrivent avec des chiffres romains
+% en petites capitales... Comme il n'y a pas de petites capitales italiques, on essaie
+% d'utiliser dans ce cas des petites capitales penchées : c'est pas très différent
+% Malheureusement, ça ne marche qu'avec la police Computer Modern (en tous cas pas avec Garamond)
+%%%\makeatletter
+%%%\newcommand*{\my@test@it}{it}
+%%%\newcommand*{\crm}[1]%
+%%%{%
+%%%\ifx\f@shape\my@test@it%
+%%% %[italique détecté]
+%%%  \textsc{\itshape\romannumeral #1}\relax
+%%%\else%
+%%% %[italique non-détecté]
+%%%  \textsc{\romannumeral #1}\relax
+%%%\fi%
+%%%}
+%%%\makeatother
+
