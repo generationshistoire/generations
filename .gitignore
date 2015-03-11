@@ -108,6 +108,5 @@ sympy-plots-for-*.tex/
 # xindy
 *.xdy
 
-Generations.tex.Backup-20150301-165721
-
-Generations.tex.Backup-20150301-165839
+# Bakoma backups
+*.tex.Backup*
