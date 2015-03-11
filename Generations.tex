@@ -1,5 +1,5 @@
 %\documentclass[10pt,french,oneside]{book}
-\documentclass[12pt,french]{book}
+\documentclass[11pt,french,draft]{book}
 
 \usepackage[a4paper,top=1in,inner=1in,ratio={2:3},includehead,nofoot]{geometry}
 %\usepackage[a4paper,ignorehead,bottom=1.42857in]{geometry}
@@ -72,7 +72,7 @@
 
 %\usepackage{quotchap}
 
-\usepackage{babel}
+\usepackage[latin,english,main=french]{babel}
 \frenchbsetup{og=«,fg=»}
 
 \usepackage{hyperref}
@@ -196,6 +196,15 @@
 
 %%%%%% Créer commande \anglais{texte en anglais à mettre en emphase et règles de césure anglaises...}
 %%%%%% Cf. en particulier Police_des_familles dans la marge de la troisième page
+\newcommand\anglais[1]%
+{%
+\selectlanguage{english}\emph{#1}\selectlanguage{french}%
+}
+
+\newcommand\latin[1]%
+{%
+\selectlanguage{latin}\emph{#1}\selectlanguage{french}%
+}
 
 
 %\renewcommand{\theenumii}{\alph{enumii}}
@@ -221,6 +230,8 @@
 %Ceux qui ont tout oublié n'ont pas d'avenir
 %\qauthor{Régis~\fsc{Debray}, France Culture le 4.1.2013 à 8 h 35}
 %\end{savequote}
+
+%\sloppy
 
 \input{frontmatter/accueil}
 
