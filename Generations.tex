@@ -206,6 +206,13 @@
 \selectlanguage{latin}\emph{#1}\selectlanguage{french}%
 }
 
+\newcommand\vieuxfranc[1]%
+{%
+%\emph{#1}%
+{\addfontfeature{Style = Historic, Ligatures=Historical}\emph{#1}}
+%{\addfontfeature{Style = Alternate}\emph{#1}}
+}
+
 
 %\renewcommand{\theenumii}{\alph{enumii}}
 \renewcommand{\labelenumii}{\theenumii.}
