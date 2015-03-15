@@ -9,7 +9,8 @@
 \usepackage[T1]{fontenc}
 
 
-\usepackage{fontspec}
+%\usepackage{fontspec}
+\usepackage{xltxtra}
 \defaultfontfeatures{Numbers=OldStyle,Ligatures=Rare,Mapping=tex-text}
 %\setmainfont{Adobe Garamond Pro}
 \setmainfont{Garamond Premier Pro}
@@ -74,6 +75,8 @@
 
 \usepackage[latin,english,main=french]{babel}
 \frenchbsetup{og=«,fg=»}
+
+\usepackage[autostyle]{csquotes}
 
 \usepackage{hyperref}
 \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
@@ -204,13 +207,6 @@
 \newcommand\latin[1]%
 {%
 \selectlanguage{latin}\emph{#1}\selectlanguage{french}%
-}
-
-\newcommand\vieuxfranc[1]%
-{%
-%\emph{#1}%
-{\addfontfeature{Style = Historic, Ligatures=Historical}\emph{#1}}
-%{\addfontfeature{Style = Alternate}\emph{#1}}
 }
 
 
