@@ -83,6 +83,10 @@
 \usepackage{hyperref}
 \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
 
+\usepackage[backend=biber, bibstyle=verbose, citestyle=verbose-trad1]{biblatex}
+\renewcommand{\newunitpunct}[0]{\addcomma\addspace}
+\bibliography{genehist.bib}
+
 
 
 % Suppression de l'affichage des numéros de sectionnement en dessous des chapitres :
@@ -146,20 +150,16 @@
 % en petites capitales...
 \newcommand*{\crm}[1]{\textsc{\romannumeral #1}}
 
+\providecommand{\ier}{\textsuperscript{\lowercase{er}}}
+\providecommand{\ieme}{\textsuperscript{\lowercase{e}}}
+\providecommand{\iemes}{\textsuperscript{\lowercase{es}}}
+
 \newcommand*{\crmieme}[1]{%
 \crm{#1}%
 \ifnum#1=1%
-  \ifdefined\ier%
     \ier%
-  \else%
-    \textsuperscript{\lowercase{er}}%
-  \fi%
 \else%
-  \ifdefined\ieme%
     \ieme%
-  \else%
-    \textsuperscript{\lowercase{e}}%
-  \fi%
 \fi%
 }
 
@@ -168,13 +168,7 @@
 }
 
 \newcommand*{\siecles}[2]{%
-\crm{#1}--\crm{#2}%
-\ifdefined\iemes%
-  \iemes%
-\else%
-  \textsuperscript{\lowercase{es}}%
-\fi%
-\ siècles%
+\crm{#1}--\crm{#2}\iemes\ siècles%
 }
 
 
@@ -264,5 +258,8 @@
 
 \tableofcontents
 \listoftables
+
+\nocite{*}
+\printbibliography
 
 \end{document}
