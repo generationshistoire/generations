@@ -16,13 +16,22 @@
 \setmainfont{Garamond Premier Pro}
 
 
-%%%%%% Ce qui suit permet d'avoir le nom des parties en en-tête avec 
+%%%%%%% Ce qui suit permet d'avoir le nom des parties en en-tête avec 
 \usepackage{etoolbox}
+%\makeatletter
+%%%% patch \@part[#1]{#2} and \@spart (see the class file) to save the part name
+%\pretocmd{\@part}{\gdef\parttitle{#1}}{}{}
+%\pretocmd{\@spart}{\gdef\parttitle{#1}}{}{}
+%\makeatother
+%
 \makeatletter
-%%% patch \@part[#1]{#2} and \@spart (see the class file) to save the part name
-\pretocmd{\@part}{\gdef\parttitle{#1}}{}{}
-\pretocmd{\@spart}{\gdef\parttitle{#1}}{}{}
+\patchcmd{\@part}% <cmd>
+  {\markboth{}{}}% <search>
+  {\partmark{#1}}% <replace>
+  {}{}% <success><failure>
 \makeatother
+
+
 
 \makeatletter
 %%% Numéroter les chapitres par partie %%% remplacé par package chngcntr ci-dessous
@@ -67,7 +76,21 @@
 
 \usepackage{enumitem}
 
-\usepackage[pagestyles]{titlesec}
+%\usepackage[pagestyles]{titlesec}
+%%%%%% titlesec pose des problèmes avec la bibliographie... En remplacement :
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\newcommand{\partmark}[1]{\markboth{\scshape #1}{}}
+\renewcommand{\chaptermark}[1]{\markright{\scshape #1}}
+\renewcommand{\sectionmark}[1]{}
+
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\rightmark}
+
+%[\thepage][][\scshape\parttitle]{\scshape\chaptertitle}{}{\thepage}
 
 \usepackage{numprint}
 
@@ -215,10 +238,11 @@
 
 \begin{document}
 
+%%%%%% Si titlesec
 %%%%%% définition du style "livre", merci etoolbox pour \parttitle
-\newpagestyle{livre}{\sethead[\thepage][][\scshape\parttitle]{\scshape\chaptertitle}{}{\thepage}}
-%\newpagestyle{livre}{\sethead[\thepage][][\scshape\chaptertitle]{\scshape\sectiontitle}{}{\thepage}}
-\pagestyle{livre}
+%\newpagestyle{livre}{\sethead[\thepage][][\scshape\parttitle]{\scshape\chaptertitle}{}{\thepage}}
+%%%\newpagestyle{livre}{\sethead[\thepage][][\scshape\chaptertitle]{\scshape\sectiontitle}{}{\thepage}}
+%\pagestyle{livre}
 
 \maketitle
 
