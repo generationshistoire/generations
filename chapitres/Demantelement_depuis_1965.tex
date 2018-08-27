@@ -219,9 +219,9 @@ Les tableaux suivants permettent de mesurer les évolutions intervenues entre 19
  
 %premier tableau, 1999£££££££££££££££££££££££££
 
-\newlength{\gauchecol}
-\setlength{\gauchecol}{0.16666667\textwidth}
-\addtolength{\gauchecol}{-2\tabcolsep}
+\newlength{\longueurcolonne} % une longueur ne doit être définie qu'une seule fois
+\setlength{\longueurcolonne}{0.16666667\textwidth} % 6 colonnes, 1 ÷ 6 ≈ 0,16666667
+\addtolength{\longueurcolonne}{-2\tabcolsep}
 
 
 \begin{table}[!ht]% [!htb]
@@ -233,7 +233,7 @@ Les tableaux suivants permettent de mesurer les évolutions intervenues entre 19
 « Histoires de familles, histoires familiales », \emph{Les cahiers de l'INED}, \no 156 ;
 \emph{Recensement de la population}, INSEE, 1999, p. 281.} }
 \label{tableau-cadre-vie-1999}
-\begin{tabular}{*{6}{>{\hspace{0pt}\centering\arraybackslash}b{\gauchecol}}}
+\begin{tabular}{*{6}{>{\hspace{0pt}\centering\arraybackslash}b{\longueurcolonne}}}
 Âge des jeunes (années) & Vivant avec les deux parents de naissance & Avec un parent seul%
 \footnote{Familles monoparentales.}
  & Avec un parent et un beau-parent%
@@ -267,11 +267,7 @@ Les tableaux suivants permettent de mesurer les évolutions intervenues entre 19
 
 
 
-  %deuxième tableau : 2011££££££££££££££££££££££££££
-
-\newlength{\gauche2col}
-\setlength{\gauche2col}{0.16666667\textwidth}
-\addtolength{\gauche2col}{-2\tabcolsep}
+  %deuxième tableau : 2013££££££££££££££££££££££££££
 
 
 \begin{table}[!ht]% [!htb]
@@ -281,7 +277,7 @@ Les tableaux suivants permettent de mesurer les évolutions intervenues entre 19
 {Cadre de vie des jeunes en 2013%
 \footnote{Sources : \emph{Recensement de la population de 2013}, exploitation complémentaire, INSEE.} }
 \label{tableau-cadre-vie-2013}
-\begin{tabular}{*{6}{>{\hspace{0pt}\centering\arraybackslash}b{\gauche2col}}}
+\begin{tabular}{*{6}{>{\hspace{0pt}\centering\arraybackslash}b{\longueurcolonne}}}
 Âge des jeunes (années) & Vivant avec deux parents 
 \footnote{parents de naissance ou famille recomposée} 
 & Avec un parent seul%
@@ -312,7 +308,7 @@ Les tableaux suivants permettent de mesurer les évolutions intervenues entre 19
 \makeatother
 %\centering
 
-%deuxième tableau£££££££££££££££££££££££££££££
+%troisième tableau : 2004-2007£££££££££££££££££££££££££££££
 
 
 
@@ -325,7 +321,7 @@ Les tableaux suivants permettent de mesurer les évolutions intervenues entre 19
 
 \label{tableau-cadre-vie-2004-2007}
 
-\begin{tabular}{*{6}{>{\hspace{0pt}\centering\arraybackslash}b{\gauche2col}}}
+\begin{tabular}{*{6}{>{\hspace{0pt}\centering\arraybackslash}b{\longueurcolonne}}}
 Âge des jeunes (années) & Vivant avec les deux parents de naissance & Avec un parent seul & Avec un parent et un beau-parent & Autres situations & Total\\
 \hline
  0-6     & 82,2 & 10,1 & 7,2 & 0,5  & 100~\% \\
@@ -347,6 +343,11 @@ Les tableaux suivants permettent de mesurer les évolutions intervenues entre 19
 %\emph{Total}
 %\emph{0-6}
  
+
+
+%\newlength{\longueurcolonne} % une longueur ne doit être définie qu'une seule fois
+\setlength{\longueurcolonne}{0.2\textwidth} % 5 colonnes, 1 ÷ 5 = 0,2
+\addtolength{\longueurcolonne}{-2\tabcolsep}
  
  \makeatletter
 \if@twoside
@@ -357,20 +358,20 @@ Les tableaux suivants permettent de mesurer les évolutions intervenues entre 19
 \makeatother
 %\centering
  \begin{minipage}{\textwidth} 
-\caption[De 1999 à 2011]%
+\caption[Cadre de vie des enfants mineurs de 1999 à 2011]%
 {Enfants mineurs de 1999 à 2011%
 \footnote{Source : \emph{Couples et familles, édition 2015, Insee références}, INSEE.} }
 
 \label{Enfants mineurs, de 1999 à 2011}
 
-\begin{tabular}{*{5}{>{\hspace{0pt}\centering\arraybackslash}b{\gauchecol}}}
-Vivant en familles & 1999 effectifs (en milliers) & 1999 ~\% & 2011 effectifs (en milliers) & 2011 ~\% \\
+\begin{tabular}{*{5}{>{\hspace{0pt}\centering\arraybackslash}b{\longueurcolonne}}}
+Vivant en familles & 1999 (effectifs en milliers) & 1999 (pourcentages) & 2011 (effectifs en milliers) & 2011 (pourcentages) \\
 \hline
- tradition.\footnote{Pères et mères de naissance cohabitants.}     & 9952 & 75,5 & 9774 & 71,3 \\
- recomposées & 1374 & 10,4 & 1476 & 10,8 \\
- monoparent. & 1867 & 14,1 & 2450 & 17,9 \\
- \hline 
- ensemble & 13193 & 100~\% & 13700 & 100~\%
+traditionnelles\footnote{Pères et mères de naissance cohabitants.}     & \nombre{9952} & 75,5 & \nombre{9774} & 71,3 \\
+recomposées & \nombre{1374} & 10,4 & \nombre{1476} & 10,8 \\
+monoparentales & \nombre{1867} & 14,1 & \nombre{2450} & 17,9 \\
+\hline 
+Ensemble & \nombre{13193} & 100~\% & \nombre{13700} & 100~\%
 \end{tabular}
 
 \end{minipage}
@@ -379,9 +380,9 @@ Vivant en familles & 1999 effectifs (en milliers) & 1999 ~\% & 2011 effectifs (e
  
  
  
- Pour les mineurs vivre séparé de l'un de ses deux géniteurs reste une situation minoritaire, mais elle est de plus en plus fréquente au fil des années et au fur et à mesure qu'ils prennent de l'âge : pour l'instant les trois quarts vivent sous le même toit que leurs \emph{deux} parents \emph{de naissance} (dont les deux tiers des mineurs de 15 ans à 18 ans). Par contre le mouvement de déliaison (de "démariage\footnote{Cf. Irène \fsc{THERY}, et son livre du même nom.}") est puissant et rien ne suggère qu'il va rencontrer une limite dans un avenir prévisible.
+ Pour les mineurs vivre séparé de l'un de ses deux géniteurs reste une situation minoritaire, mais elle est de plus en plus fréquente au fil des années et au fur et à mesure qu'ils prennent de l'âge : pour l'instant les trois quarts vivent sous le même toit que leurs \emph{deux} parents \emph{de naissance} (dont les deux tiers des mineurs de 15 ans à 18 ans). Par contre le mouvement de déliaison (de « \emph{démariage}\footnote{Cf. Irène \fsc{THERY}, et son livre du même nom.} ») est puissant et rien ne suggère qu'il va rencontrer une limite dans un avenir prévisible.
  
- Mais au-delà des chiffres les évolutions actuelles sont aussi des évolutions symboliques : il n'y a peut-être jamais eu autant d'enfants qu'à la fin du  XX ème siècle à vivre jusqu'à leur majorité avec leur père et leur mère de naissance\footnote{Cela a peut-être été vrai vers 1960-70, mais ce ne doit plus être le cas actuellement} et pourtant les familles ne sont plus pensées comme l'alliance irréversible de deux lignées, ni comme des institutions aux limites intangibles, mais comme des associations d'individus à géométrie variable. Les enfants d'aujourd'hui apprennent très tôt que les couples mixtes sont fragiles, qu'on rencontre aussi des couples mariés de même sexe, qu'amour ne rime pas avec toujours, que les princes et les princesses n'ont pas forcément beaucoup d'enfants, et qu'ils se séparent souvent avant la fin de leur histoire. Ils apprennent à dissocier parentalité et conjugalité, ou plutôt ils n'apprennent plus à les associer de manière indéfectible. À côté des scénarii traditionnels de leurs jeux d'imagination (le gendarme et le voleur, le client et la marchande, le malade et le docteur, l'indien et le cow-boy,~etc.) ils disposent maintenant du jeu du mariage et du divorce.
+ Mais au-delà des chiffres les évolutions actuelles sont aussi des évolutions symboliques : il n'y a peut-être jamais eu autant d'enfants qu'à la fin du \siecle{20} à vivre jusqu'à leur majorité avec leur père et leur mère de naissance\footnote{Cela a peut-être été vrai vers 1960-70, mais ce ne doit plus être le cas actuellement.} et pourtant les familles ne sont plus pensées comme l'alliance irréversible de deux lignées, ni comme des institutions aux limites intangibles, mais comme des associations d'individus à géométrie variable. Les enfants d'aujourd'hui apprennent très tôt que les couples mixtes sont fragiles, qu'on rencontre aussi des couples mariés de même sexe, qu'amour ne rime pas avec toujours, que les princes et les princesses n'ont pas forcément beaucoup d'enfants, et qu'ils se séparent souvent avant la fin de leur histoire. Ils apprennent à dissocier parentalité et conjugalité, ou plutôt ils n'apprennent plus à les associer de manière indéfectible. À côté des scénarii traditionnels de leurs jeux d'imagination (le gendarme et le voleur, le client et la marchande, le malade et le docteur, l'indien et le cow-boy,~etc.) ils disposent maintenant du jeu du mariage et du divorce.
 
  Sous l'Ancien Régime c'était le contraire : en droit civil comme en droit canon, les mariages étaient indissolubles. Par contre, la mortalité d'alors, très élevée par rapport à celle d'aujourd'hui, faisait que plus de la moitié des époux étaient séparés par la mort avant même que leurs enfants n'aient atteint leurs vingt ans, et à cet âge il était normal d'être orphelin d'au moins un de ses deux parents. La durée moyenne effective des couples conjugaux était faible, environ quinze ans, comparée à celle d ceux des couples d'aujourd'hui qui n'ont pas divorcé, autour de cinquante ans. 
 
