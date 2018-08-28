@@ -219,9 +219,10 @@ Les tableaux suivants permettent de mesurer les évolutions intervenues entre 19
  
 %premier tableau, 1999£££££££££££££££££££££££££
 
-\newlength{\longueurcolonne} % une longueur ne doit être définie qu'une seule fois
-\setlength{\longueurcolonne}{0.16666667\textwidth} % 6 colonnes, 1 ÷ 6 ≈ 0,16666667
-\addtolength{\longueurcolonne}{-2\tabcolsep}
+\newlength{\largeurcolonne} % une longueur ne peut être créée qu'une seule fois
+% ensuite elle peut être ajustée à volonté... Ici pour un tableau de 6 colonnes :
+\setlength{\largeurcolonne}{0.16666667\textwidth} % 6 colonnes, 1 ÷ 6 ≈ 0,16666667
+\addtolength{\largeurcolonne}{-2\tabcolsep}
 
 
 \begin{table}[!ht]% [!htb]
@@ -233,7 +234,7 @@ Les tableaux suivants permettent de mesurer les évolutions intervenues entre 19
 « Histoires de familles, histoires familiales », \emph{Les cahiers de l'INED}, \no 156 ;
 \emph{Recensement de la population}, INSEE, 1999, p. 281.} }
 \label{tableau-cadre-vie-1999}
-\begin{tabular}{*{6}{>{\hspace{0pt}\centering\arraybackslash}b{\longueurcolonne}}}
+\begin{tabular}{*{6}{>{\hspace{0pt}\centering\arraybackslash}b{\largeurcolonne}}}
 Âge des jeunes (années) & Vivant avec les deux parents de naissance & Avec un parent seul%
 \footnote{Familles monoparentales.}
  & Avec un parent et un beau-parent%
@@ -277,7 +278,7 @@ Les tableaux suivants permettent de mesurer les évolutions intervenues entre 19
 {Cadre de vie des jeunes en 2013%
 \footnote{Sources : \emph{Recensement de la population de 2013}, exploitation complémentaire, INSEE.} }
 \label{tableau-cadre-vie-2013}
-\begin{tabular}{*{6}{>{\hspace{0pt}\centering\arraybackslash}b{\longueurcolonne}}}
+\begin{tabular}{*{6}{>{\hspace{0pt}\centering\arraybackslash}b{\largeurcolonne}}}
 Âge des jeunes (années) & Vivant avec deux parents 
 \footnote{parents de naissance ou famille recomposée} 
 & Avec un parent seul%
@@ -321,7 +322,7 @@ Les tableaux suivants permettent de mesurer les évolutions intervenues entre 19
 
 \label{tableau-cadre-vie-2004-2007}
 
-\begin{tabular}{*{6}{>{\hspace{0pt}\centering\arraybackslash}b{\longueurcolonne}}}
+\begin{tabular}{*{6}{>{\hspace{0pt}\centering\arraybackslash}b{\largeurcolonne}}}
 Âge des jeunes (années) & Vivant avec les deux parents de naissance & Avec un parent seul & Avec un parent et un beau-parent & Autres situations & Total\\
 \hline
  0-6     & 82,2 & 10,1 & 7,2 & 0,5  & 100~\% \\
@@ -344,10 +345,9 @@ Les tableaux suivants permettent de mesurer les évolutions intervenues entre 19
 %\emph{0-6}
  
 
-
-%\newlength{\longueurcolonne} % une longueur ne doit être définie qu'une seule fois
-\setlength{\longueurcolonne}{0.2\textwidth} % 5 colonnes, 1 ÷ 5 = 0,2
-\addtolength{\longueurcolonne}{-2\tabcolsep}
+% On re-règle la largeur de colonne pour un tableau de 5 colonnes :
+\setlength{\largeurcolonne}{0.2\textwidth} % 5 colonnes, 1 ÷ 5 = 0,2
+\addtolength{\largeurcolonne}{-2\tabcolsep}
  
  \makeatletter
 \if@twoside
@@ -364,7 +364,7 @@ Les tableaux suivants permettent de mesurer les évolutions intervenues entre 19
 
 \label{Enfants mineurs, de 1999 à 2011}
 
-\begin{tabular}{*{5}{>{\hspace{0pt}\centering\arraybackslash}b{\longueurcolonne}}}
+\begin{tabular}{*{5}{>{\hspace{0pt}\centering\arraybackslash}b{\largeurcolonne}}}
 Vivant en familles & 1999 (effectifs en milliers) & 1999 (pourcentages) & 2011 (effectifs en milliers) & 2011 (pourcentages) \\
 \hline
 traditionnelles\footnote{Pères et mères de naissance cohabitants.}     & \nombre{9952} & 75,5 & \nombre{9774} & 71,3 \\
